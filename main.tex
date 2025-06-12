@@ -1,0 +1,260 @@
+%% 서울시립대학교 학위논문 LaTeX 양식 메인 파일
+% 작성자: 서울시립대학교 기계정보공학과 이성재
+% 버전: V1 (2025-06)
+% 컴파일러 버전: TeXLive 2024 (pdfLaTeX)
+
+%% 패키지 정의 (필수)
+\documentclass[ko]{UOSThesis}
+\usepackage{UOSBiblo}
+
+%% 학생 정보 정의 (필수)
+\newcommand{\KoInstitution}{서울시립대학교 대학원}
+\newcommand{\EnInstitution}{The Graduate School of the University of Seoul}
+
+\newcommand{\KoTitle}{서울시립대학교 \LaTeX~학위논문 서식}
+\newcommand{\EnTitle}{\LaTeX~Thesis Template for University of Seoul}
+
+\newcommand{\KoAuthor}{이성재}
+\newcommand{\EnAuthor}{Seongjae Lee}
+
+\newcommand{\KoAdvisor}{김지도}
+\newcommand{\EnAdvisor}{Jido Kim}
+
+\newcommand{\KoDegree}{공학박사}
+\newcommand{\EnDegree}{Doctor of Philosophy}
+
+\newcommand{\KoThesisName}{공학박사학위논문}
+\newcommand{\EnThesisName}{Ph.D. Dissertation}
+
+\newcommand{\KoGraduateDate}{2026년 2월}
+\newcommand{\EnGraduateDate}{February 2025}
+
+\newcommand{\KoSubmissionDate}{2025년 12월}
+\newcommand{\EnSubmissionDate}{December 2025}
+
+\newcommand{\KoDepartment}{기계정보공학과}
+\newcommand{\EnDepartment}{Department of Mechanical and Information Engineering}
+
+\newcommand{\RefereeFirst}{김심사}
+\newcommand{\RefereeSecond}{이심사}
+\newcommand{\RefereeThird}{박심사}
+\newcommand{\RefereeFourth}{최심사}
+\newcommand{\RefereeFifth}{김지도}
+
+\newcommand{\KoKeyword}{한국어 주요어 1, 한국어 주요어 2, 한국어 주요어 3}
+\newcommand{\EnKeyword}{English Keyword 1, English Keyword 2, English Keyword 3}
+
+%% 개인적으로 사용할 패키지 (자유롭게 선택하여 사용)
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts}
+\usepackage{xurl}
+
+%% 본문 시작
+\begin{document}
+
+%% 사전 정의부 (그대로 둘것!!!!!!)
+\begingroup
+\pagestyle{empty}
+
+\makefrontcover
+\makeproposal
+\makeapproval
+
+\begin{FrontAbstract}
+    \input{abs-front}
+\end{FrontAbstract}
+
+\makefrontcover
+
+\endgroup
+
+\frontmatter
+
+\maketableofcontents
+\makelistoftables
+\makelistofigures
+
+%% 본문 (실제 학위논문 내용 작성)
+\mainmatter
+
+\chapter{파일의 구성}
+
+기본 템플릿 프로젝트의 파일은 다음과 같은 구성을 가지며, 사용자의 필요에 따라 새로운 파일을 추가하여 사용하여도 무방하다.
+\begin{itemize}
+\singlespacing
+\small
+    \item \texttt{UOSThesis.cls}: 학위논문 클래스 파일. 전반적인 서식을 정의하며 일반적으로는 수정할 일이 없고 \texttt{main.tex}에서 불러와서 사용한다.
+    \item \texttt{UOSBiblo.sty}: 참고문헌 인용 양식. 서울시립대학교 학위논문 시행세칙 기준의 참고문헌 양식을 정의하며, 일반적으로는 수정할 일이 없고 \texttt{main.tex}에서 불러와서 사용한다.
+    \item \texttt{refs.bib}: bibtex 참고문헌 예시 파일. 실제 학위논문 작성시 필요한 참고문헌들을 bibtex 양식에 맞추어 이 파일에 넣어 사용한다.
+    \item \texttt{abs-front.tex}: 초록 파일. 영문 작성시 영문 초록, 국문 작성시 국문 초록을 해당 파일에 작성한다.
+    \item \texttt{abs-back.tex}: 외국어 초록 파일. 영문 작성시 국문 초록, 국문 작성시 영문 초록을 해당 파일에 작성한다.
+    \item \texttt{thanksto.tex}: 감사의 글. 사용 여부는 선택적이며, 선택하지 않을 시 \texttt{main.tex}에서 제외시키면 된다.
+    \item \texttt{main.tex}: 본문을 작성하는 메인 파일. 학위논문이 길어지는 경우 각 챕터를 tex 파일로 만든 후 \texttt{\textbackslash input\{tex 파일명\}}으로 불려와서 써도 무방하다.
+\end{itemize}
+
+\chapter{기본 정보 작성}
+\label{chap:information}
+
+학위논문 작성에 들어가기 전, 기본 정보를 작성해야 한다. 기본 정보는 메인 tex 파일인 \texttt{main.tex}에서 직접 정의해야 하며, 아래의 사항을 작성한다.
+\begin{itemize}
+\small
+\singlespacing
+    \item \texttt{\textbackslash KoTitle}: 한글 제목.
+    \item \texttt{\textbackslash EnTitle}: 영문 제목.
+    \item \texttt{\textbackslash KoAuthor}: 한글 저자명.
+    \item \texttt{\textbackslash EnAuthor}: 영문 저자명.
+    \item \texttt{\textbackslash KoAdvisor}: 한글 지도교수명.
+    \item \texttt{\textbackslash EnAdvisor}: 영문 지도교수명.
+    \item \texttt{\textbackslash KoDegree}: 한글 학위명.
+    \item \texttt{\textbackslash EnDegree}: 영문 학위명.
+    \item \texttt{\textbackslash KoGraduateDate}: 한글 졸업연월. 전기졸업: 2월, 후기졸업: 8월.
+    \item \texttt{\textbackslash EnGraduateDate}: 영문 졸업연월. 전기졸업: February, 후기졸업: August.
+    \item \texttt{\textbackslash KoSubmissionDate}: 한글 제출연월. 전기졸업: 12월, 후기졸업: 6월.
+    \item \texttt{\textbackslash EnSubmissionDate}: 영문 제출연월. 전기졸업: December, 후기졸업: June.
+    \item \texttt{\textbackslash KoDepartment}: 한글 학과명.
+    \item \texttt{\textbackslash EnDepartment}: 영문 학과명.
+    \item \texttt{\textbackslash RefereeFirst}: 심사위원장명.
+    \item \texttt{\textbackslash RefereeSecond}--\texttt{\textbackslash RefereeFifth}: 심사위원명. 석사의 경우 \texttt{\textbackslash RefereeThird}까지, 박사의 경우 \texttt{\textbackslash RefereeFifth}까지 작성한다.
+\end{itemize}
+
+\chapter{학위논문 기재 순서}
+\label{chap:order}
+
+학위논문은 다음 순서에 따라 기재한다. 
+\begin{enumerate}
+\small
+\singlespacing
+    \item 표지
+    \item 제출문
+    \item 인준서
+    \item 초록(국문논문: 국문초록, 영문논문: 영문초록)
+    \item 표지
+    \item 목차
+    \item 표목차
+    \item 그림목차
+    \item 본문
+    \item 참고문헌
+    \item 부록 등(선택)
+    \item 외국어초록(국문논문: 영문초록, 영문논문: 국문초록)
+    \item 감사의 글(선택)
+\end{enumerate}
+
+본 템플릿은 \ref{chap:information}장에서 기재한 정보를 정확하게 기재하고 \texttt{UOSThesis} 클래스의 옵션을 적절하게 부여할 시, 항목 1, 2, 3, 5, 6, 7, 8, 10을 자동으로 작성하여 채워 준다. 따라서 작성자는 초록, 외국어초록, 본문, 부록, 감사의 글 등(필요시)만을 작성하고 \texttt{bibtex}로 관리된 참고문헌 파일을 사용하면 자동으로 논문을 작성할 수 있다.
+
+\chapter{학위 및 작성언어의 선택}
+\label{chap:setdeglang}
+
+본 템플릿에서는 사용자의 학위, 논문 작성 언어에 따라 옵션을 변경하면 자동으로 템플릿을 변경하는 기능을 제공한다. 학위논문 작성에 필요한 양식은 \LaTeX~클래스 파일인 \texttt{UOSThesis.cls}에 정의되어 있으며 본문 내용에 해당하는 \texttt{main.tex}에서 \texttt{\textbackslash documentclass[]\{UOSThesis\}}로 클래스를 불러와 사용한다.
+
+본 템플릿은 옵션 설정 없이 \texttt{\textbackslash documentclass[]\{UOSThesis\}}를 불러와서 사용할 경우 영문 논문, 박사학위를 기본값으로 한다. 변경을 원하는 경우 다음과 같이 설정한다.
+\begin{itemize}
+\small
+\singlespacing
+    \item 한국어 논문: 옵션에 ``ko'' 추가.
+    \item 석사 논문: 옵션에 ``master'' 추가.
+\end{itemize}
+
+예를 들어, 한국어로 석사논문을 작성하고자 하는 경우 \texttt{\textbackslash documentclass[  ko, master]\{UOSThesis\}}옵션을 사용한다.
+
+\newpage
+\chapter{장, 절, 항의 작성}
+\label{chap:setchapter}
+
+학위논문의 목차는 수준에 따라 장(Chapter), 절(Section), 항(Subsection)으로 구분한다. 장, 절, 항을 설정하고자 할 경우 다음과 같이 설정한다.
+\begin{itemize}
+\small
+\singlespacing
+    \item 장: \texttt{\textbackslash chapter\{장의 이름\}}
+    \item 절: \texttt{\textbackslash section\{절의 이름\}}
+    \item 항: \texttt{\textbackslash subsection\{항의 이름\}}
+\end{itemize}
+
+일반적으로 학위논문은 저널 논문보다 분량이 많으므로 각 장을 개별 tex 파일에 분리하여 작성하고 \texttt{\textbackslash input\{tex 파일명\}}~으로 불러오는 것이 일반적이다.
+
+\section{절 설정 예시}
+
+해당 부분과 같이 절을 설정할 수 있다. 또한 학위논문 작성 중 특정 부분의 장, 절, 항을 언급해야 할 경우 \texttt{\textbackslash label\{레이블명\}}을 장, 절, 항 정의 아래에 설정하고 상호 참조로 불러올 수 있다. 예를 들어, ``\ref{chap:setdeglang}장''을 인용하고자 하는 경우 다음과 같이 작성한다: ``\texttt{\textbackslash ref\{chap:setdeglang\}장}''. 참조가 잘 된 경우 출력 pdf 파일에서 해당 부분을 클릭시 참조한 위치로 이동하게 된다.
+
+\subsection{항 설정 예시}
+
+항에 대해서도 동일하게 설정하고 사용할 수 있다.
+
+\chapter{표 및 그림의 작성}
+
+표와 그림은 \LaTeX~에서 일반적으로 작성하는 방식에 맞추어 작성한다. 우선, 표는 \texttt{\textbackslash begin\{table\}}과 \texttt{\textbackslash end\{table\}}~사이에 작성한다. 여기서 표의 내부 내용은 \texttt{tabular}~패키지를 사용하여 채웠지만, 기호에 따라 다른 패키지를 사용해도 무방하다. 본문에서 표는 다음과 같이 \texttt{\textbackslash ref\{테이블 레이블명\}}~을 사용하여 참조할 수 있다. 현재 위의 표 레이블을 ``tab:ex\_table1''로 설정했으므로 표~\ref{tab:ex_table1}와 같이 참조한다.
+
+\begin{table}[h]
+    \centering
+    \caption{도표의 작성예시.}
+    \begin{tabular}{cc}
+    \toprule
+        Dummy & Table \\
+        Dummy & Contents \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:ex_table1}
+\end{table}
+
+그림도 표와 동일한 방식으로 \texttt{\textbackslash begin\{figure\}}과 \texttt{\textbackslash end\{figure\}} 사이에 그림을 넣는다. 다음과 같이 작성할 수 있다. 그림의 참조도 표와 동일한 방식을 사용하면 된다.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=3cm]{figs/overleaf.png}
+    \caption{그림의 작성예시.}
+    \label{fig:ex_figure1}
+\end{figure}
+
+그림과 표는 순서에 따라 일련번호를 매기며 번호는 장별로 초기화된다. 또한, 이 방법으로 작성된 표 및 그림은 자동으로 학위논문 앞단의 표 목차, 그림 목차에 포함된다.
+
+\chapter{수식의 작성}
+
+수식은 \texttt{\textbackslash begin\{equation\}}과 \texttt{\textbackslash end\{equation\}}사이에 작성한다. 수식도 표, 그림과 동일하게 \texttt{\textbackslash label\{레이블명\}}을 지정하여 (\ref{eq:ex_eq1}), (\ref{eq:ex_eq2})와 같이 참조할 수 있다.
+\begin{equation}
+    x = y
+    \label{eq:ex_eq1}
+\end{equation}
+\begin{equation}
+    a = b
+    \label{eq:ex_eq2}
+\end{equation}
+
+\chapter{참고문헌의 작성}
+
+참고문헌 작성을 위해서는 우선 인용하고자 하는 참고문헌을 \texttt{bibtex} 서식으로 정리한 후, 프로젝트 폴더의 ``refs.bib'' 파일에 붙여넣는다. 현재 서울시립대학교 학위논문 인용 양식을 지원하는 bibtex 문서 종류는 다음과 같다.
+\begin{itemize}
+\singlespacing
+\small
+    \item article: 영문 저널 논문
+    \item inproceedings: 영문 학술대회 논문
+    \item book: 영문 저서 및 보고서
+    \item online: 영문 웹페이지
+    \item koarticle: 국문 저널 논문
+    \item koinproceedings: 국내 학술대회 논문
+    \item kobook: 국문 저서 및 보고서
+    \item koonline: 국문 웹페이지
+    \item misc: 정의되지 않은 인용 양식이 필요할 시 사용
+\end{itemize}
+
+서울시립대학교 학위논문 시행세칙은 논문에서 나오는 순서로 참고문헌의 번호가 붙는 것이 아니라 (1) 발행국가 (한국 $\to$ 외국 순), (2) 저자명 순으로 번호가 붙는다. 해당 내용을 처리하기 위해 영문 참고문헌의 경우 일반적인 bibtex 양식과 동일하게 article, inproceedings, book, online 항목을 사용하지만, 한국 문헌의 경우 koarticle, koinproceedings, kobook, koonline의 항목을 사용해야 한다. 그리고 한국문헌의 bibtex 항목은 \texttt{presort=\{ko\}}를 추가하여 영문논문 앞으로 오도록 해야 한다.
+
+본 템플릿의 ``refs.bib''에 각 항목에 해당하는 예시가 기록되어 있으니 참고해서 작성하면 된다. 참고문헌의 인용은 \texttt{\textbackslash cite\{문서명\}}~명령어로 한다. 이 문단에서는 문장 사이사이에 인용된 참고문헌의 예시를 보여 준다~\cite{ahmed_smart-anomaly-detection_2023, akcay_ganomaly_2018, an_canopen_2017}. 참고문헌은 본문 바로 뒤에 위치한다~\cite{sinha_vibration_2015, park_image_2024, sharma_bearing_2018}. 이 문단에서는 문장 사이사이에 인용된 참고문헌의 예시를 보여 준다~\cite{mfpt, kang_easy}. 참고문헌은 본문 바로 뒤에 위치한다~\cite{lee_embedded_2023}.
+
+%% 본문 후 정의부(그대로 둘것!!!!!)
+\clearpage
+\phantomsection
+\printbibliography[
+  title=\bibloname,
+  heading=bibintoc
+]
+\newpage
+
+\begin{BackAbstract}
+    \input{abs-back}
+\end{BackAbstract}
+
+\begin{KoreanAcknowledgement}
+    \input{thanksto}
+\end{KoreanAcknowledgement}
+
+\end{document}

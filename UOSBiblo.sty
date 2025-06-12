@@ -1,0 +1,181 @@
+%% 서울시립대학교 학위논문 참고문헌 표기 양식
+% 작성자: 서울시립대학교 기계정보공학과 이성재
+% 버전: V1 (2025-06)
+% 컴파일러 버전: TeXLive 2024 (pdfLaTeX)
+% 주석에 코드에 해당하는 내용을 설명으로 작성했으며, (M)으로 표시된 항목은 서울시립대학교 학위논문 시행세칙에서 지정한 필수 서식임.
+\ProvidesPackage{UOSBiblo}
+
+% 1. 저자명 표기 규칙
+% 2명 이상의 저자는 제1저자 후 et al. 표기 또는 저자 전체 이름 표기 (M)
+% 영문 이름(given name)의 경우 약자 표기 (e.g., Albert -> A.) (M)
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=uosbibsort,
+maxnames=1,
+minnames=1,
+giveninits=true,
+]{biblatex}
+\DeclareNameAlias{default}{family-given}
+
+%% 2. 참고문헌 정렬 규칙 (우선순위별로 숫자로 표시)
+% 1순위: 동양문헌 -> 서양문헌 순 (M)
+% 2순위: 제 1저자 last name 순 (M)
+% 3순위: 출판연도 순
+% 4순위: 제목 사전순
+% .bib 파일에서 한국 참고문헌의 경우 presort = {ko} 추가할것
+\DeclareSortingTemplate{uosbibsort}{
+  \sort{\field{presort}}
+  \sort{\field{author}}
+  \sort{\field{year}}
+  \sort{\field{title}}
+}
+
+\DeclareFieldFormat[article, inproceedings, book]{volume}{vol.\space#1}
+\DeclareFieldFormat[article, inproceedings, book]{number}{no.\space#1}
+\DeclareFieldFormat[article, inproceedings, book]{booktitle}{In\space\textit{#1}}
+\DeclareFieldFormat[online]{urldate}{Accessed:\space#1}
+\DeclareFieldFormat[online]{url}{[Online]\addperiod\space{Available:}\space\url{#1}}
+
+\DeclareFieldFormat[koarticle, koinproceedings]{volume}{{제}#1{권}}
+\DeclareFieldFormat[koarticle, koinproceedings]{number}{{제}#1{호}}
+\DeclareFieldFormat[koarticle, koinproceedings]{title}{``#1''}
+\DeclareFieldFormat[koarticle, koinproceedings]{journaltitle}{#1}
+\DeclareFieldFormat[koarticle, koinproceedings]{booktitle}{#1}
+
+\DeclareFieldFormat[koarticle, koinproceedings, kobook]{pages}{#1{쪽}}
+
+\DeclareFieldFormat[kobook]{publisher}{\text{#1}}
+\DeclareFieldFormat[kobook, koonline]{title}{\text{#1}}
+\DeclareFieldFormat[kobook]{edition}{{제}\text{#1}{판}}
+\DeclareFieldFormat[kobook]{location}{\text{#1}}
+
+\DeclareFieldFormat[koonline]{urldate}{접속일:\space#1}
+\DeclareFieldFormat[koonline]{url}{{URL:}\space\url{#1}}
+
+\DeclareNameFormat[koarticle, koinproceedings, kobook, koonline]{author}{
+    \ifthenelse{\value{listcount}=1}
+    {\unskip\namepartfamily\namepartgiven}
+    {\unskip\namepartfamily\namepartgiven}
+    \ifthenelse{\value{listcount}<\value{liststop}}
+        {\addcomma\space}
+        {
+            \ifboolexpr{ test {\ifnumgreater{\value{listtotal}}{1}}}
+                {외\addcomma\space}
+                {}
+        }
+}
+
+%% 3. 참고문헌 종류별 표기 규칙
+
+% 저널 논문 표기 규칙
+% 저자, 연도, "논문명", 학술지, 권, 호, 페이지. (M)
+
+% 영어 논문지
+\DeclareBibliographyDriver{article}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{journaltitle}\setunit{\addcomma\space}
+  \printfield{volume}\setunit{\addcomma\space}
+  \printfield{number}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 국내 논문지
+\DeclareBibliographyDriver{koarticle}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{journaltitle}\setunit{\addcomma\space}
+  \printfield{volume}\setunit{\addcomma\space}
+  \printfield{number}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 학술대회 논문 표기 규칙
+% 저자, 연도, "논문명", In 학술대회명, 페이지.
+
+% 영어 학술대회
+\DeclareBibliographyDriver{inproceedings}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{booktitle}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 국내 학술대회
+\DeclareBibliographyDriver{koinproceedings}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{booktitle}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 저서 논문 표기 규칙
+% 저자, 연도, 저서명, 판수, 출판사, 출판지, 페이지. (M)
+
+% 영문 저서
+\DeclareBibliographyDriver{book}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{edition}\setunit{\addcomma\space}
+  \printlist{publisher}\setunit{\addcomma\space}
+  \printlist{location}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 국문 저서
+\DeclareBibliographyDriver{kobook}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printfield{edition}\setunit{\addcomma\space}
+  \printlist{publisher}\setunit{\addcomma\space}
+  \printlist{location}\setunit{\addcomma\space}
+  \printfield{pages}
+  \finentry
+}
+
+% 웹페이지 표기 규칙
+% 저자, 제목, Accessed: 접근일. [Online]. Available: URL
+% TODO: 접근일을 YYYY-MM-DD 형식으로 변경
+
+% 영문 웹페이지
+\DeclareBibliographyDriver{online}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printurldate\setunit{\addperiod\space}
+  \printfield{url}
+  \finentry
+}
+
+% 국문 웹페이지
+\DeclareBibliographyDriver{koonline}{%
+  \printnames{author}\setunit{\addcomma\space}
+  \printfield{year}\setunit{\addcomma\space}
+  \printfield{title}\setunit{\addcomma\space}
+  \printurldate\setunit{\addperiod\space}
+  \printfield{url}
+  \finentry
+}
+
+% 수동 참고문헌
+% misc 문헌의 경우에 note의 내용이 그대로 표출
+\DeclareBibliographyDriver{misc}{%
+  \printfield{note}
+  \finentry
+}
+
+\addbibresource{refs.bib}
+
+% ======================================================
