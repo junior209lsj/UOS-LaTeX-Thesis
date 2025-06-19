@@ -387,7 +387,7 @@
 }{ 
     \vfill
     \medskip
-    \noindent \textbf{Keyword: }~\EnKeyword \\
+    \noindent \textbf{Keywords: }~\EnKeyword \\
     \newpage
 }
 
@@ -403,7 +403,7 @@
 }{
     \vfill
     \medskip
-    \noindent \textbf{Keyword: }~\EnKeyword \\
+    \noindent \textbf{Keywords: }~\EnKeyword \\
     \newpage
 }
 
