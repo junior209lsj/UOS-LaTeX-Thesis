@@ -334,7 +334,7 @@
 \newcommand{\makeenglishapproval}{
 \thispagestyle{empty} \noindent
 {\centering
-    \SubTitleSize{This certifies that~\EnThesisName \\ of \EnAuthor~is approved.} \par
+    \SubTitleSize{This certifies that the~\EnThesisName \\ of \EnAuthor~is approved.} \par
     \vfill
     \makeenglishreferee
     \vfill
